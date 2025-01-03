@@ -1,7 +1,7 @@
 name: highlight_mentions
 description: "A Flutter package to highlight mentions in text fields and display widgets."
 version: 0.0.1
-homepage: https://github.com/yourusername/highlight_mentions
+homepage: https://github.com/ahvuit/highlight_mentions
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
