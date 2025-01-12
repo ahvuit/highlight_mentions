@@ -1,3 +1,7 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+* Push new package
+
+## 0.0.2
+
+* Add mentionable text field
