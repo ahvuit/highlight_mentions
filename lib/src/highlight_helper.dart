@@ -43,7 +43,7 @@ class HighlightHelper {
         spans.add(
           TextSpan(
             text: text.substring(currentIndex, match.start),
-            style: normalStyle ?? TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+            style: normalStyle ?? const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
           ),
         );
       }
@@ -54,7 +54,7 @@ class HighlightHelper {
 
       // Special case for the 'allPattern'.
       if (matchText == '@$allPatternEscaped') {
-        matchStyle = specialStyle ?? TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
+        matchStyle = specialStyle ?? const TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
       } else {
         matchStyle = highlightedStyle ??
             TextStyle(color: (matchText == '@$currentUsername' ? Colors.red : Colors.blue), fontWeight: FontWeight.bold);
@@ -77,7 +77,7 @@ class HighlightHelper {
       spans.add(
         TextSpan(
           text: text.substring(currentIndex),
-          style: normalStyle ?? TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+          style: normalStyle ?? const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
         ),
       );
     }

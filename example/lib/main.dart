@@ -24,16 +24,16 @@ class HighlightTextScreen extends StatefulWidget {
 }
 
 class _HighlightTextScreenState extends State<HighlightTextScreen> {
-  final List<String> mentionableNames = ['alice', 'bob', 'sss'];
   final String _currentUsername = 'john';
+  late List<String> mentionableNames = ['alice', 'bob', 'sss'];
   late HighlightTextEditingController _controller;
+  final FocusNode _focusNode = FocusNode();
 
   String text = '';
 
   @override
   void initState() {
     super.initState();
-
     _controller = HighlightTextEditingController(
       mentionableNames: mentionableNames,
       currentUsername: _currentUsername,
@@ -56,13 +56,39 @@ class _HighlightTextScreenState extends State<HighlightTextScreen> {
             SizedBox(
               height: 20,
             ),
-            HighlightedTextField(
-                controller: _controller,
-                onChanged: (value) {
-                  setState(() {
-                    text = value;
-                  });
-                }),
+            // HighlightedTextField(
+            //     controller: _controller,
+            //     onChanged: (value) {
+            //       setState(() {
+            //         text = value;
+            //       });
+            //     }),
+            SizedBox(
+              height: 20,
+            ),
+            MentionableTextField(
+              focusNode: _focusNode,
+              currentUsername: _currentUsername,
+              mentionableNames: mentionableNames,
+              onMentionSelected: (mention) {
+                print('Mention selected: $mention');
+              },
+              textFieldDecoration: InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Type @ to mention...',
+              ),
+              suggestionDecoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    blurRadius: 10,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              controller: _controller,
+            ),
           ],
         ),
       ),

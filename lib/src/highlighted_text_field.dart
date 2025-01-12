@@ -1,44 +1,120 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'highlight_text_editing_controller.dart';
 
-/// A TextField widget that highlights mentions as the user types.
+/// A `TextField` widget that supports real-time mention highlighting as the user types.
+///
+/// This widget uses a `HighlightTextEditingController` to handle the dynamic styling
+/// of mentions and patterns in the text. It also provides a wide range of customizable
+/// properties to control the behavior and appearance of the text field.
+///
+/// Example usage:
+/// ```dart
+/// HighlightedTextField(
+///   controller: HighlightTextEditingController(
+///     normalStyle: TextStyle(color: Colors.black),
+///     highlightedStyle: TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
+///     specialStyle: TextStyle(color: Colors.green),
+///     mentionableNames: ['Alice', 'Bob'],
+///   ),
+///   decoration: InputDecoration(
+///     hintText: 'Type a message...',
+///     border: OutlineInputBorder(),
+///   ),
+///   onChanged: (value) => print('User typed: $value'),
+/// );
+/// ```
 typedef OnTypingCallback = void Function(String value);
 
 class HighlightedTextField extends StatelessWidget {
+  /// The controller that manages the text and applies highlighting.
   final HighlightTextEditingController controller;
-  final InputDecoration? decoration;
-  final TextInputType? keyboardType;
-  final FocusNode? focusNode;
-  final int? minLines;
-  final int? maxLines;
-  final OnTypingCallback? onChanged;
-  final TextInputAction? textInputAction;
-  final Color? cursorColor;
-  final bool? autofocus;
-  final bool? obscureText;
-  final bool? enabled;
-  final TextAlign? textAlign;
-  final TextAlignVertical? textAlignVertical;
-  final double? cursorWidth;
-  final Radius? cursorRadius;
-  final bool? enableSuggestions;
-  final bool? autocorrect;
-  final EdgeInsets? scrollPadding;
-  final bool? showCursor;
-  final int? maxLength;
-  final MaxLengthEnforcement? maxLengthEnforcement;
-  final GestureTapCallback? onTap;
-  final VoidCallback? onEditingComplete;
-  final ValueChanged<String>? onSubmitted;
-  final ScrollPhysics? scrollPhysics;
-  final Brightness? keyboardAppearance;
-  final EdgeInsets? padding;
-  final InputCounterWidgetBuilder? buildCounter;
-  final bool? expands;
-  final OverlayVisibilityMode? clearButtonMode;
 
+  /// Decoration for the `TextField`, such as borders and hint text.
+  final InputDecoration? decoration;
+
+  /// The type of keyboard to use for the text field (e.g., email, number).
+  final TextInputType? keyboardType;
+
+  /// Controls the focus of the text field.
+  final FocusNode? focusNode;
+
+  /// The minimum number of lines for the text field.
+  final int? minLines;
+
+  /// The maximum number of lines for the text field.
+  final int? maxLines;
+
+  /// Callback triggered when the text changes.
+  final OnTypingCallback? onChanged;
+
+  /// The action button to display on the keyboard (e.g., "done", "next").
+  final TextInputAction? textInputAction;
+
+  /// The color of the cursor.
+  final Color? cursorColor;
+
+  /// Whether the text field should focus automatically.
+  final bool? autofocus;
+
+  /// Whether the text should be obscured (e.g., for passwords).
+  final bool? obscureText;
+
+  /// Whether the text field is enabled or disabled.
+  final bool? enabled;
+
+  /// Alignment of the text within the text field.
+  final TextAlign? textAlign;
+
+  /// Vertical alignment of the text field content.
+  final TextAlignVertical? textAlignVertical;
+
+  /// The width of the cursor.
+  final double? cursorWidth;
+
+  /// The radius of the cursor corners.
+  final Radius? cursorRadius;
+
+  /// Whether to enable text suggestions.
+  final bool? enableSuggestions;
+
+  /// Whether to enable auto-correct for the text field.
+  final bool? autocorrect;
+
+  /// Padding around the text field when scrolling.
+  final EdgeInsets? scrollPadding;
+
+  /// Whether to show the cursor even when the text field is not focused.
+  final bool? showCursor;
+
+  /// The maximum number of characters allowed in the text field.
+  final int? maxLength;
+
+  /// Enforcement behavior for `maxLength`.
+  final MaxLengthEnforcement? maxLengthEnforcement;
+
+  /// Callback triggered when the text field is tapped.
+  final GestureTapCallback? onTap;
+
+  /// Callback triggered when editing is complete.
+  final VoidCallback? onEditingComplete;
+
+  /// Callback triggered when the user submits the text.
+  final ValueChanged<String>? onSubmitted;
+
+  /// The scroll physics for the text field.
+  final ScrollPhysics? scrollPhysics;
+
+  /// The appearance of the keyboard (e.g., dark, light).
+  final Brightness? keyboardAppearance;
+
+  /// Custom counter widget builder for the text field.
+  final InputCounterWidgetBuilder? buildCounter;
+
+  /// Whether the text field expands to fill available space.
+  final bool? expands;
+
+  /// Constructor for the `HighlightedTextField`.
   const HighlightedTextField({
     super.key,
     required this.controller,
@@ -68,10 +144,8 @@ class HighlightedTextField extends StatelessWidget {
     this.onSubmitted,
     this.scrollPhysics,
     this.keyboardAppearance,
-    this.padding,
     this.buildCounter,
     this.expands,
-    this.clearButtonMode,
   });
 
   @override
@@ -83,7 +157,7 @@ class HighlightedTextField extends StatelessWidget {
       textInputAction: textInputAction,
       cursorColor: cursorColor,
       decoration:
-          decoration ?? const InputDecoration(border: OutlineInputBorder()),
+      decoration ?? const InputDecoration(border: OutlineInputBorder()),
       autofocus: autofocus ?? false,
       obscureText: obscureText ?? false,
       enabled: enabled ?? true,
