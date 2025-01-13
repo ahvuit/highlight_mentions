@@ -157,7 +157,7 @@ class HighlightedTextField extends StatelessWidget {
       textInputAction: textInputAction,
       cursorColor: cursorColor,
       decoration:
-      decoration ?? const InputDecoration(border: OutlineInputBorder()),
+          decoration ?? const InputDecoration(border: OutlineInputBorder()),
       autofocus: autofocus ?? false,
       obscureText: obscureText ?? false,
       enabled: enabled ?? true,

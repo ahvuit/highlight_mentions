@@ -10,14 +10,14 @@ class HighlightHelper {
   /// - [mentionableNames]: A list of usernames to match for mentions.
   /// - [currentUsername]: The current user's username for personal mention.
   static List<TextSpan> highlightText(
-      String text, {
-        TextStyle? normalStyle,
-        TextStyle? highlightedStyle,
-        TextStyle? specialStyle,
-        List<String>? mentionableNames,
-        String? currentUsername,
-        String? allPattern,
-      }) {
+    String text, {
+    TextStyle? normalStyle,
+    TextStyle? highlightedStyle,
+    TextStyle? specialStyle,
+    List<String>? mentionableNames,
+    String? currentUsername,
+    String? allPattern,
+  }) {
     // Build the mention pattern dynamically.
     final namePattern = (mentionableNames ?? []).map(RegExp.escape).join('|');
     final allPatternEscaped = RegExp.escape(allPattern ?? 'All');
@@ -25,7 +25,9 @@ class HighlightHelper {
 
     final fullPattern = r'(@(' +
         allPatternEscaped +
-        (currentUsernameEscaped.isNotEmpty ? r'|' + currentUsernameEscaped : '') +
+        (currentUsernameEscaped.isNotEmpty
+            ? r'|' + currentUsernameEscaped
+            : '') +
         (namePattern.isNotEmpty ? r'|' + namePattern : '') +
         r'))';
 
@@ -43,7 +45,9 @@ class HighlightHelper {
         spans.add(
           TextSpan(
             text: text.substring(currentIndex, match.start),
-            style: normalStyle ?? const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+            style: normalStyle ??
+                const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.normal),
           ),
         );
       }
@@ -54,10 +58,15 @@ class HighlightHelper {
 
       // Special case for the 'allPattern'.
       if (matchText == '@$allPatternEscaped') {
-        matchStyle = specialStyle ?? const TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
+        matchStyle = specialStyle ??
+            const TextStyle(color: Colors.red, fontWeight: FontWeight.bold);
       } else {
         matchStyle = highlightedStyle ??
-            TextStyle(color: (matchText == '@$currentUsername' ? Colors.red : Colors.blue), fontWeight: FontWeight.bold);
+            TextStyle(
+                color: (matchText == '@$currentUsername'
+                    ? Colors.red
+                    : Colors.blue),
+                fontWeight: FontWeight.bold);
       }
 
       // Add the match as a TextSpan with the determined style.
@@ -77,7 +86,9 @@ class HighlightHelper {
       spans.add(
         TextSpan(
           text: text.substring(currentIndex),
-          style: normalStyle ?? const TextStyle(color: Colors.black, fontWeight: FontWeight.normal),
+          style: normalStyle ??
+              const TextStyle(
+                  color: Colors.black, fontWeight: FontWeight.normal),
         ),
       );
     }

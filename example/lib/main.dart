@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:highlight_mentions/highlight_mentions.dart';
 
@@ -20,7 +21,7 @@ class HighlightTextScreen extends StatefulWidget {
   const HighlightTextScreen({super.key});
 
   @override
-  _HighlightTextScreenState createState() => _HighlightTextScreenState();
+  State<HighlightTextScreen> createState() => _HighlightTextScreenState();
 }
 
 class _HighlightTextScreenState extends State<HighlightTextScreen> {
@@ -71,7 +72,9 @@ class _HighlightTextScreenState extends State<HighlightTextScreen> {
               currentUsername: _currentUsername,
               mentionableNames: mentionableNames,
               onMentionSelected: (mention) {
-                print('Mention selected: $mention');
+                if (kDebugMode) {
+                  print('Mention selected: $mention');
+                }
               },
               textFieldDecoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -81,7 +84,7 @@ class _HighlightTextScreenState extends State<HighlightTextScreen> {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
+                    color: Colors.grey,
                     blurRadius: 10,
                     offset: Offset(0, 3),
                   ),

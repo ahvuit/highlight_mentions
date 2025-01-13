@@ -190,7 +190,8 @@ class _MentionableTextFieldState extends State<MentionableTextField> {
       );
       widget.controller.value = TextEditingValue(
         text: updatedText,
-        selection: TextSelection.collapsed(offset: triggerIndex + mention.length + 2),
+        selection:
+            TextSelection.collapsed(offset: triggerIndex + mention.length + 2),
       );
     }
 
@@ -212,19 +213,19 @@ class _MentionableTextFieldState extends State<MentionableTextField> {
                 final filteredMentions = query.isEmpty
                     ? _combinedMentionableNames
                     : _combinedMentionableNames
-                    .where((name) =>
-                    name.toLowerCase().contains(query.toLowerCase()))
-                    .toList();
+                        .where((name) =>
+                            name.toLowerCase().contains(query.toLowerCase()))
+                        .toList();
 
                 return filteredMentions.isEmpty
                     ? const SizedBox.shrink()
                     : MentionSuggestions(
-                  isShow: isShow,
-                  mentionableNames: filteredMentions,
-                  onTapMention: _handleMentionTap,
-                  decoration: widget.suggestionDecoration,
-                  padding: widget.suggestionPadding,
-                );
+                        isShow: isShow,
+                        mentionableNames: filteredMentions,
+                        onTapMention: _handleMentionTap,
+                        decoration: widget.suggestionDecoration,
+                        padding: widget.suggestionPadding,
+                      );
               },
             );
           },
