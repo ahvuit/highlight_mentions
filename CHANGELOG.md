@@ -9,3 +9,7 @@
 ## 0.0.3
 
 * Dart formatter
+
+## 0.0.4
+
+* Dart formatter
